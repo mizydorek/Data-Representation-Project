@@ -69,6 +69,12 @@ The following command will install the packages according to the configuration f
 $ pip install -r requirements.txt
 ```
 
+To stop virtual environmental running issue below command in terminal. 
+
+```
+$ pip deactivate
+```
+
 ### Set up PostgreSQL database
 
 After the installation, log in to an an interactive Postgres session by using sudo and pass in the username with the -u option:
@@ -85,7 +91,7 @@ postgres=# CREATE DATABASE project;
 
 Then, create user and select the password:
 
-```
+```SQL
 postgres=# CREATE USER user WITH PASSWORD 'password';
 ```
 
@@ -96,3 +102,67 @@ and give new user access to administrate the new database:
 postgres=# GRANT ALL PRIVILEGES ON DATABASE project TO user;
 ```
 *replace the database, username and password with your own*
+
+Create a new table country:
+
+```SQL
+CREATE TABLE country(
+	id INTEGER NOT NULL PRIMARY KEY,
+	countryName TEXT NULL UNIQUE
+);
+```
+
+new gender type:
+```SQL
+CREATE TYPE gender AS ENUM ('Male', 'Female');
+```
+
+and actors table:
+
+```SQL
+CREATE TABLE actor(
+	id serial PRIMARY KEY,
+	actorName text NULL,
+	actorDOB text NULL,
+	actorGender gender NOT NULL,
+	actorCountryID integer NOT NULL DEFAULT 241,
+	FOREIGN KEY(actorCountryID) REFERENCES country(id)
+);
+```
+
+### Run the web application
+
+Before running the web app please configure the  dbconfig file 
+
+```python
+sql = {
+    'host':'localhost', 
+    'port':5432, 
+    'database':'project', 
+    'user':'user', 
+    'password':'password'
+}
+```
+*replace the database, username and password with your own*
+
+From current working directory start the web app using the command in terminal **osx/linux** 
+
+```
+export FLASK_APP=app.py
+```
+
+or command line in **windows**
+
+```
+set FLASK_APP=app.py
+```
+
+To run the server
+
+```
+python -m flask run
+```
+
+Localhost server can be accessed at [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
+
+To stop server running press `ctrl` + `c` in terminal.  
