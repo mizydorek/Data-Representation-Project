@@ -8,3 +8,8 @@ Author: Maciej Izydorek Email: G00387873@gmit.ie Github: [mizydorek](https://git
 #
 
 #### Project Overview
+
+
+
+
+The application can be accessed at http://34.121.174.63/
