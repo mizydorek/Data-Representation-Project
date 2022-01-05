@@ -2,9 +2,10 @@
 	-- DROP DATABASE IF EXISTS moviesDB;
 
 -- create ew database
-CREATE DATABASE moviesDB;
+CREATE DATABASE actorsdb;
 
-USE moviesDB;
+
+SET search_path TO actorsdb;
 
 CREATE TABLE country(
 	id INTEGER NOT NULL PRIMARY KEY,
@@ -34,114 +35,6 @@ INSERT INTO country (id, countryName) VALUES (258, 'Russia');
 
 CREATE TYPE gender AS ENUM ('Male', 'Female');
 
-CREATE TABLE director(
-	directorID integer NOT NULL UNIQUE,
-	directorName text NULL,
-	directorDOB date NOT NULL,
-	directorGender gender NOT NULL,
-	directorCountryID INTEGER DEFAULT 241,
-);
-
-
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (4, 'Steven Spielberg', '1946-12-18', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (5, 'Joel Co ', '1954-11-29', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (6, 'Ethan Co ', '1957-09-21', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (7, 'George Lucas', '1944-05-14', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (8, 'Ang Lee', '1954-10-23', 'Male', 35);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (9, 'Martin Scorsese', '1942-11-17', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (10, 'Clint Eastwood', '1930-05-31', 'Male', 167);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (11, 'Sam Raimi', '1959-10-23', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (12, 'Peter Jacks ', '1961-10-31', 'Male', 167);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (14, 'Bryan Singer', '1965-09-17', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (15, 'James Camer ', '1954-08-16', 'Male', 47);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (16, 'Tom Shadyac', '1958-12-11', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (17, 'Kevin Reynolds', '1952-01-17', 'Male', 240);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (18, 'Michael Bay','1965-02-17', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (19, 'David Yates', '1963-10-08', 'Male', 167);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (20, 'Robert Zemeckis', '1952-05-14', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (21, 'Steve Hickner', '1961-01-10', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (25, 'Wolfgang Peters ', '1941-03-14', 'Male', 257);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (26, 'Mike ewell', '1942-03-28', 'Male', 240);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (27, 'Christopher ol ', '1970-07-30', 'Male', 167);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (28, 'Tim Burt ', '1958-08-25', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (29, 'Lee Tamahori', '1950-06-17', 'Male', 167);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (30, 'Richard Donner', '1930-04-24', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (37, 'Paul Greengrass', '1955-08-13', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (38, 'Alfonso Cuar ', '1961-11-28', 'Male', 40);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (39, 'Andy Wachowski', '1967-12-29', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (40, 'Ron Howard', '1954-03-01', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (41, 'Chris Columbus', '1958-09-10', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (42, 'Roland Emmerich', '1955-11-10', 'Male', 40);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (43, 'Edward Zwick', '1952-10-08', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (44, 'J. J. Abrams', '1966-06-27', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (45, 'John Woo', '1946-09-23', 'Male', 167);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (46, 'Pete Docter', '1968-08-10', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (47, 'Roger Spottiswoode', '1945-01-05', 'Male', 240);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (48, 'Steven Soderbergh', '1963-01-14', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (49, 'Len Wisem ', '1973-03-04', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (50, 'Frank Coraci', '1966-02-03', 'Male', 37);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (51, 'Ridley Scott', '1937-11-30', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (52, 'Doug Lim ', '1965-07-24', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (53, 'Alex Proyas', '1963-09-23', 'Male', 38);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (54, 'Martin Campbell', '1940-10-24', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (55, 'Jean-Christophe Comar', '1957-07-04', 'Male', 79);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (78, 'Tony Scott', '1944-06-21', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (79, 'Quentin Tarantino', '1963-03-27', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (80, 'Tom Dey', '1965-04-15', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (81, 'David Dobk ', '1969-06-23', 'Male', 167);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (82, 'Stephen orringt ', '1964-02-13', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (83, 'Andrew Davis', '1946-11-21', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (86, 'Joss Whed ', '1964-06-23', 'Male', 47);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (87, 'David Cars ', '1955-09-08', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (88, 'Irvin Kershner', '1923-04-29', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (89, 'Robert Wise', '1914-09-10', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (90, 'Richard Marquand', '1938-04-22', 'Male', 240);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (91, 'David Cronenberg', '1943-03-15', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (92, 'Lewis Gilbert', '1920-03-06', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (93, 'Andrew Dominik', '1967-10-07', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (94, 'Ivan Reitm ', '1946-10-27', 'Male', 47);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (95, 'William Shatner', '1931-03-22', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (96, 'Nicholas Meyer', '1945-12-24', 'Male', 167);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (97, 'Paul Michael Glaser', '1943-03-25', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (98, 'Kevin Costner', '1955-01-18', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (99, 'Leonard imoy', '1931-03-26', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (100, 'John Guillerm ', '1925-11-11', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (101, 'Richard Attenborough', '1923-08-29', 'Male', 240);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (102, 'Kurt Wimmer', '1964-03-09', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (103, 'Robert Rodriguez', '1968-06-20', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (104, 'Larry Charles', '1956-02-20', 'Male', 79);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (105, 'Yimou Zhang', '1951-11-14', 'Male', 48);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (106, 'Edgar Wright', '1974-04-18', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (108, 'Danny Boyle', '1956-10-20', 'Male', 240);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (109, 'Oliver Hirschbiegel', '1957-12-29', 'Male', 79);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (110, 'Val Guest', '1911-12-11', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (111, 'Jean-Pierre Jeunet', '1953-09-03', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (112, 'Terence Young', '1915-06-20', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (113, 'Peter R. Hunt', '1925-03-11', 'Male', 79);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (114, 'Stanley Tong', '1960-04-07', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (115, 'Guy Hamilt ', '1922-09-16', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (116, 'George Clooney', '1961-05-06', 'Male', 48);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (117, 'Michael Anders ', '1920-01-30', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (118, 'Sammo Hung', '1952-01-07', 'Male', 167);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender, directorCountryID) VALUES (122, 'Akira Kurosawa', '1910-10-23', 'Male', 37);
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (123, 'Morgan Spurlock', '1970-11-07', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (124, 'Oliver Owl', '1970-01-01', 'Male');
-INSERT INTO director (directorID, directorName, directorDOB, directorGender) VALUES (125, 'Wendy Wise', '1971-02-01', 'Female');
-
-
-CREATE TABLE certificate(
-	certificateID serial,
-	certificate text NULL
-);
-
-INSERT INTO certificate (certificateID, certificate)  VALUES (1, 'U');
-INSERT INTO certificate (certificateID, certificate)  VALUES (2, 'PG');
-INSERT INTO certificate (certificateID, certificate)  VALUES (3, '12');
-INSERT INTO certificate (certificateID, certificate)  VALUES (4, '12A');
-INSERT INTO certificate (certificateID, certificate)  VALUES (5, '15');
-INSERT INTO certificate (certificateID, certificate)  VALUES (6, '18');
-
-
 CREATE TABLE actor(
 	id serial PRIMARY KEY,
 	actorName text NULL,
@@ -150,6 +43,65 @@ CREATE TABLE actor(
 	actorCountryID integer NOT NULL DEFAULT 241,
 	FOREIGN KEY(actorCountryID) REFERENCES country(id)
 );
+
+
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Tom Cruise','1962-07-03','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Sam eill','1947-09-14','Male',167);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Laura Dern','1967-02-10','Female',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Jeff Goldblum','1952-10-22','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Richard Attenborough','1923-08-29','Male',240);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Samuel L. Jackson','1948-12-21','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Tobey Maguire','1975-06-27','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Willem Dafoe','1955-07-22','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Kirsten Dunst','1982-04-30','Female',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Naomi Watts','1968-09-28','Female',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Jack Black','1969-08-28','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Adrien Brody','1973-04-14','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Andy Serkis','1964-04-20','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Brandon Routh','1979-10-09','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Kate Bosworth','1983-01-02','Female',240);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Kevin Spacey','1959-07-26','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Leonardo DiCaprio','1974-11-11','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Kate Winslet','1975-10-05','Female',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Billy Zane','1966-02-24','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Bill Paxton','1955-05-17','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Steve Carell','1962-08-16','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Morgan Freeman','1937-06-01','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Kevin Costner','1955-01-18','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Dennis Hopper','1936-05-17','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Ben Affleck','1972-08-15','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Josh Hartnett','1978-07-21','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Kate Beckinsale','1973-07-26','Female',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Cuba Gooding Jr.','1968-01-02','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Jon Voight','1938-12-29','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Alec Baldwin','1958-04-03','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Tom Sizemore','1961-11-29','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Dan Aykroyd','1952-07-01','Male',47);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Shia LaBeouf','1986-06-11','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('John Turturro','1957-02-28','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Peter Cullen','1941-07-28','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Hugo Weaving','1960-04-04','Male',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Megan Fox','1986-05-16','Female',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Daniel Radcliffe','1989-07-23','Male',240);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Ralph Fiennes','1962-12-22','Male',240);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Brendan Gleeson','1955-03-29','Male',46);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Gary Oldman','1958-03-21','Male',240);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Michael Gambon','1940-10-19','Male',240);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Alan Rickman','1946-02-21','Male',240);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Emma Thompson','1959-04-15','Female',240);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Helena Bonham Carter','1966-05-26','Female',240);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Robbie Coltrane','1950-03-30','Male',240);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Emma Watson','1990-04-15','Female',240);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Rupert Grint','1988-08-24','Male',240);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Robin Wright Penn','1966-04-08','Female',241);
+INSERT INTO actor (actorName, actorDOB, actorGender, actorCountryID) VALUES ('Anthony Hopkins','1937-12-31','Male',241);
+
+
+
+
+
+
+
 
 INSERT INTO actor (id, actorName, actorDOB, actorGender, actorCountryID) VALUES (1,'Tom Cruise','1962-07-03','Male',241);
 INSERT INTO actor (id, actorName, actorDOB, actorGender, actorCountryID) VALUES (2,'Sam eill','1947-09-14','Male',167);
@@ -491,561 +443,3 @@ INSERT INTO actor (id, actorName, actorDOB, actorGender, actorCountryID) VALUES 
 INSERT INTO actor (id, actorName, actorDOB, actorGender, actorCountryID) VALUES (341,'David Hedison','1927-05-20','Male',241);
 
 
-CREATE TABLE studio(
-	studioID serial,
-	studioName text NOT NULL UNIQUE,
-);
-
-INSERT INTO studio (studioID, studioName) VALUES (1, 'Universal Pictures');
-INSERT INTO studio (studioID, studioName) VALUES (2, 'Paramount Pictures');
-INSERT INTO studio (studioID, studioName) VALUES (3, 'Walt Disney Pictures');
-INSERT INTO studio (studioID, studioName) VALUES (4, '20th Century Fox');
-INSERT INTO studio (studioID, studioName) VALUES (5, 'Columbia Pictures');
-INSERT INTO studio (studioID, studioName) VALUES (6, 'Warner Bros. Pictures');
-INSERT INTO studio (studioID, studioName) VALUES (7, 'Touchstone Pictures');
-INSERT INTO studio (studioID, studioName) VALUES (8, 'Dreamworks');
-INSERT INTO studio (studioID, studioName) VALUES (9, 'ImageMovers');
-INSERT INTO studio (studioID, studioName) VALUES (10, 'Disney Pixar');
-INSERT INTO studio (studioID, studioName) VALUES (11, 'MGM');
-INSERT INTO studio (studioID, studioName) VALUES (12, 'Chris Lee Productions');
-INSERT INTO studio (studioID, studioName) VALUES (13, 'Lucasfilm');
-INSERT INTO studio (studioID, studioName) VALUES (14, 'New Line Cinema');
-INSERT INTO studio (studioID, studioName) VALUES (15, 'Carolco Pictures');
-INSERT INTO studio (studioID, studioName) VALUES (16, 'Miramax Films');
-INSERT INTO studio (studioID, studioName) VALUES (17, 'Jerry Bruckheimer Films');
-INSERT INTO studio (studioID, studioName) VALUES (18, 'Gaumont');
-INSERT INTO studio (studioID, studioName) VALUES (19, 'Revolution studios');
-INSERT INTO studio (studioID, studioName) VALUES (20, 'Imagine Entertainment');
-INSERT INTO studio (studioID, studioName) VALUES (21, 'Morgan Creek Productions');
-INSERT INTO studio (studioID, studioName) VALUES (22, 'United Artists');
-INSERT INTO studio (studioID, studioName) VALUES (23, 'Dimension Films');
-INSERT INTO studio (studioID, studioName) VALUES (24, 'Braveworld Productions');
-INSERT INTO studio (studioID, studioName) VALUES (25, 'Icon Productions');
-INSERT INTO studio (studioID, studioName) VALUES (26, 'Carolina Bank');
-INSERT INTO studio (studioID, studioName) VALUES (27, 'Tig Productions');
-INSERT INTO studio (studioID, studioName) VALUES (28, 'Dune Entertainment');
-INSERT INTO studio (studioID, studioName) VALUES (29, 'Beijing ew Picture Film Co.');
-INSERT INTO studio (studioID, studioName) VALUES (30, 'Big Talk Productions');
-INSERT INTO studio (studioID, studioName) VALUES (31, 'Malpaso Company');
-INSERT INTO studio (studioID, studioName) VALUES (32, 'British Film Council');
-INSERT INTO studio (studioID, studioName) VALUES (33, 'Channel Four Films');
-INSERT INTO studio (studioID, studioName) VALUES (34, 'Constantin Film');
-INSERT INTO studio (studioID, studioName) VALUES (35, 'Bavaria Film');
-INSERT INTO studio (studioID, studioName) VALUES (36, 'Bayerischer Rundfunk');
-INSERT INTO studio (studioID, studioName) VALUES (37, 'RKO Radio Pictures');
-INSERT INTO studio (studioID, studioName) VALUES (38, 'Toho Company');
-INSERT INTO studio (studioID, studioName) VALUES (39, 'Kathbur Pictures');
-INSERT INTO studio (studioID, studioName) VALUES (40, 'Avalon studios');
-
-
-CREATE TABLE language(
-	languageID serial,
-	language text NOT NULL
-);
-
-INSERT INTO language (languageID, language) VALUES (1, 'English');
-INSERT INTO language (languageID, language) VALUES (2, 'Cantonese');
-INSERT INTO language (languageID, language) VALUES (3, 'French');
-INSERT INTO language (languageID, language) VALUES (4, 'German');
-INSERT INTO language (languageID, language) VALUES (5, 'Mandarin');
-INSERT INTO language (languageID, language) VALUES (6, 'Japanese');
-INSERT INTO language (languageID, language) VALUES (7, 'Aramaic');
-INSERT INTO language (languageID, language) VALUES (8, 'Mayan');
-INSERT INTO language (languageID, language) VALUES (9, 'Russian');
-INSERT INTO language (languageID, language) VALUES (10, 'Spanish');
-INSERT INTO language (languageID, language) VALUES (11, 'Owl Hoot');
-
-
-CREATE TABLE genre(
-	genreId serial,
-	genreName text NOT NULL
-);
-
-INSERT INTO genre (genreId, genreName) VALUES (1, 'Action');
-INSERT INTO genre (genreId, genreName) VALUES (2, 'Drama');
-INSERT INTO genre (genreId, genreName) VALUES (3, 'Romantic');
-INSERT INTO genre (genreId, genreName) VALUES (4, 'Comedy');
-INSERT INTO genre (genreId, genreName) VALUES (5, 'Muscial');
-INSERT INTO genre (genreId, genreName) VALUES (6, 'Other');
-
-
-CREATE TABLE film(
-	filmID serial,
-	filmName text NULL,
-	filmReleaseDate date NULL,
-	filmDirectorID integer NULL,
-	filmLanguageID integer NULL,
-	filmCountryID integer NULL,
-	filmStudioID integer NULL,
-	filmGenreID integer NULL,
-	filmRunTimeMinutes integer NULL,
-	filmCertificateID integer NULL,
-	filmBudgetDollars integer NULL,
-	filmBoxOfficeDollars integer NULL,
-	filmOscarNominations integer NULL,
-	filmOscarWins integer NULL
-);
-
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (1,'Jurassic Park','1993-07-16',4,1,241,1,6,127,2,63000000,920100000,3,3);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (2,'Spider-Man','2002-06-14',11,1,241,5,6,121,4,139000000,821606375,2,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (3,'King Kong','2005-12-15',12,1,241,1,6,187,4,207000000,550316796,4,3);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (5,'Superman Returns','2006-07-16',14,1,241,6,6,154,4,204000000,391120000,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (6,'Titanic','1998-01-23',15,1,241,4,3,194,3,200000000,1835400000,14,11);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (7,'Evan Almighty','2007-08-03',16,1,241,1,2,95,2,175000000,173219280,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (8,'Waterworld','1995-08-11',17,1,241,1,6,136,3,175000000,264246220,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (9,'Pearl Harbor','2001-06-01',18,1,241,7,6,183,3,151500000,450500000,4,1);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (10,'Transformers','2007-07-27',18,1,241,8,6,144,4,151000000,707675744,3,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (11,'Harry Potter and the Order of the Phoenix','2007-07-12',19,1,240,6,6,138,4,150000000,938454486,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (12,'Beowulf','2007-11-16',20,1,241,2,6,113,4,150000000,194995215,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (13,'Bee Movie','2007-12-14',21,1,241,8,6,90,1,150000000,286758211,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (17,'Troy','2004-05-21',25,1,241,6,6,163,5,150000000,497298577,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (18,'Harry Potter and the Goblet of Fire','2005-11-18',26,1,240,6,6,157,4,150000000,896013036,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (19,'Batman Begins','2005-06-16',27,1,241,6,6,140,4,150000000,371824647,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (20,'Charlie and the Chocolate Factory','2005-07-29',28,1,240,6,5,115,2,150000000,473459076,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (22,'Die Another Day','2002-11-20',29,1,240,11,6,133,4,142000000,431942139,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (23,'Lethal Weapon 4','1998-09-18',30,1,241,6,6,127,5,140000000,285400000,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (24,'Armageddon','1998-08-07',18,1,241,7,6,150,3,140000000,554600000,4,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (26,'Spider-Man 3','2007-05-04',11,1,241,5,6,139,4,258000000,891930303,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (27,'Spider-Man 2','2004-07-16',11,1,241,5,6,127,4,200000000,784024485,3,1);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (33,'War of the Worlds','2005-07-01',4,1,241,2,6,116,4,132000000,591745532,3,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (34,'The Bourne Ultimatum','2007-08-17',37,1,241,1,6,115,4,130000000,442748521,3,3);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (35,'Harry Potter and the Prisoner of Azkaban','2004-05-31',38,1,240,6,6,141,2,130000000,795538952,2,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (36,'The Matrix Reloaded','2003-05-21',39,1,241,6,6,138,5,127000000,738576929,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (37,'The Da Vinci Code','2006-05-19',40,1,241,5,6,149,4,125000000,757536138,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (38,'Harry Potter and the Philosopher''s Stone','2001-11-16',41,1,240,6,6,152,2,125000000,976457891,3,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (39,'The Day After Tomorrow','2004-05-27',42,1,241,4,6,124,4,125000000,542740799,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (41,'The Last Samurai','2004-01-09',43,1,241,6,6,154,5,120000000,456810575,4,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (42,'The Perfect Storm','2000-07-28',25,1,241,6,2,130,3,120000000,328711434,2,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (43,'Mission: Impossible III','2006-05-04',44,1,241,2,6,126,4,150000000,397501348,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (44,'Mission: Impossible II','2000-07-07',45,1,241,2,6,123,5,120000000,546209889,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (45,'Windtalkers','2002-08-30',45,1,241,11,6,134,5,115000000,77628265,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (46,'Star Wars: Episode II - Attack of the Clones','2002-05-16',7,1,241,13,6,142,2,115000000,656695615,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (47,'Monsters Inc.','2002-02-08',46,1,241,10,6,92,1,115000000,525370172,3,1);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (48,'Star Wars: Episode I - The Phantom Menace','1999-07-16',7,1,241,13,6,133,1,115000000,924288297,3,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (49,'Star Wars: Episode III - Revenge of the Sith','2005-05-19',7,1,241,13,6,140,4,115000000,848470577,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (50,'The Matrix Revolutions','2003-11-05',39,1,241,6,6,129,5,110000000,424259759,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (51,'Tomorrow ever Dies','1997-12-12',47,1,240,11,6,119,3,110000000,339504276,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (52,'Ocean''s Eleven','2002-02-15',48,1,241,6,6,116,3,110000000,450728529,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (53,'Live Free or Die Hard','2007-07-04',49,1,241,4,6,130,5,110000000,383277179,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (54,'Around the World in 80 Days','2004-07-09',50,1,241,3,6,120,2,110000000,72004159,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (55,'Kingdom of Heaven','2005-05-06',51,1,241,4,6,145,5,110000000,211398413,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (56,'Mr. and Mrs. Smith','2005-06-10',52,1,241,4,3,120,5,110000000,468336279,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (57,'The Aviator','2005-01-06',9,1,241,6,6,170,4,110000000,214608827,11,5);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (59,'The Lord of the Rings: Fellowship of the Ring','2001-12-19',12,1,167,14,6,178,2,109000000,868621686,13,4);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (60,'I Robot','2004-08-06',53,1,241,4,6,115,4,105000000,348801023,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (61,'Casino Royale','2006-11-16',54,1,240,11,6,144,4,102000000,594165000,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (62,'Minority Report','2002-07-04',4,1,241,8,6,145,3,102000000,358814112,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (63,'Terminator 2: Judgement Day','1991-08-16',15,1,241,15,6,137,5,100000000,516816151,4,6);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (64,'Catwoman','2004-08-13',55,1,241,6,6,104,4,100000000,73887903,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (65,'Harry Potter and the Chamber of Secrets','2002-11-15',41,1,240,6,6,161,2,100000000,878987880,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (66,'American Gangster','2007-11-16',51,1,241,1,6,157,6,100000000,264132214,2,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (67,'Blood Diamond','2007-01-26',43,1,241,6,2,143,5,100000000,171377916,5,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (68,'Gladiator','2000-05-12',51,1,241,8,6,155,5,103000000,457683805,12,5);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (69,'True Lies','1994-08-12',15,1,241,4,6,141,5,100000000,365300000,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (70,'Gangs of ew York','2003-01-09',9,1,241,16,6,167,6,97000000,190400000,10,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (71,'Black Hawk Down','2002-01-18',51,1,241,17,6,144,5,95000000,173638745,4,2);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (73,'The Lord of the Rings: Return of the King','2003-12-17',12,1,167,14,6,201,4,94000000,1133027325,11,11);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (74,'The Lord of the Rings: The Two Towers','2002-12-18',12,1,167,14,6,179,4,94000000,926284377,6,2);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (78,'The Departed','2006-10-06',9,1,241,6,2,151,6,90000000,290539042,5,4);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (80,'Cinderella Man','2005-09-09',40,1,241,1,6,144,4,88000000,108539911,3,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (81,'The Bourne Supremacy','2004-08-13',37,1,241,1,6,108,4,85000000,288587450,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (83,'cast Away','2001-01-12',20,1,241,8,6,143,3,85000000,427230516,2,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (84,'Ocean''s Twelve','2005-02-04',48,1,241,6,6,125,4,85000000,363531634,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (85,'Click','2006-09-29',50,1,241,5,6,107,4,82500000,237555633,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (86,'Bruce Almighty','2003-06-27',16,1,241,1,6,101,4,81000000,485004995,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (90,'A Beautiful Mind','2002-02-22',40,1,241,1,6,135,3,78000000,316708996,8,4);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (91,'Children of Men','2006-09-22',38,1,241,1,2,109,5,76000000,69450202,3,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (92,'Munich','2006-01-27',4,1,241,8,2,164,5,75000000,130279090,5,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (93,'Independence Day','1996-08-09',42,1,241,4,6,145,3,75000000,816969255,2,1);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (94,'X-Men','2000-08-18',14,1,241,4,6,104,3,75000000,295999717,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (95,'X2','2003-05-01',14,1,241,4,6,133,4,125000000,406400513,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (96,'The Rock','1996-06-21',18,1,241,17,6,136,5,75000000,336069511,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (106,'The Abyss','1989-10-13',15,1,241,4,6,138,5,70000000,54243125,4,1);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (108,'Who Framed Roger Rabbit?','1988-12-02',20,1,241,7,4,104,2,70000000,351500000,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (109,'Sleepy Hollow','2000-01-07',28,1,241,2,6,105,5,70000000,207068340,3,1);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (113,'Apollo 13','1995-09-22',40,1,241,1,6,140,2,65000000,334100000,9,2);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (114,'Saving Private Ryan','1998-09-11',4,1,241,8,6,170,5,65000000,481635085,11,5);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (116,'The Matrix','1999-06-11',39,1,241,6,6,136,5,65000000,456500000,4,4);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (120,'GoldenEye','1995-11-24',54,1,240,11,6,130,3,60000000,356429941,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (124,'The Bourne Identity','2002-09-06',52,1,241,1,6,119,4,60000000,213300000,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (127,'Intolerable Cruelty','2003-10-24',5,1,241,20,6,100,4,60000000,121327628,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (130,'Superman','1978-12-21',30,1,241,6,6,143,2,55000000,300200000,3,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (131,'Crimson Tide','1995-11-03',78,1,241,17,6,116,5,55000000,159387195,3,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (132,'Deja Vu','2006-12-15',78,1,241,7,6,126,4,80000000,181038616,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (133,'Man On Fire','2004-10-08',78,1,241,4,2,146,6,60000000,118706816,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (134,'Enemy of the State','1998-12-26',78,1,241,7,2,132,5,85000000,250300000,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (135,'Kill Bill: Vol. 1','2003-10-17',79,1,241,16,6,111,6,55000000,180098138,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (137,'Shanghai oon','2000-08-25',80,1,241,7,6,110,3,55000000,71189835,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (138,'Kill Bill: Vol. 2','2004-04-23',79,1,241,16,6,136,6,55000000,150907920,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (140,'Flags of our Fathers','2006-12-22',10,1,241,8,2,132,5,53000000,61902376,2,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (141,'Casino','1996-02-23',9,1,241,1,6,178,6,52000000,110400000,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (142,'Robin Hood: Prince of Thieves','1991-07-19',17,1,241,6,3,143,2,50000000,390500000,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (144,'Shanghai Knights','2003-04-04',81,1,241,7,6,114,4,50000000,NULL,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (145,'Indiana Jones and the Last Crusade','1989-06-30',4,1,241,13,6,127,2,48000000,474171806,3,1);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (147,'Blade','1998-11-13',82,1,241,14,6,120,6,45000000,131237688,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (149,'The Fugitive','1993-09-24',83,1,241,6,6,130,3,44000000,368900000,7,1);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (150,'The Prestige','2006-11-10',27,1,241,7,6,130,4,40000000,107896006,2,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (153,'Wedding Crashers','2005-07-14',81,1,241,14,4,119,5,40000000,283218368,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (154,'Back to the Future Part III','1990-07-11',20,1,241,1,6,118,2,40000000,243700000,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (155,'Back to the Future Part II','1989-11-24',20,1,241,1,6,108,2,40000000,332000000,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (159,'Serenity','2005-10-07',86,1,241,1,6,119,NULL,39000000,38514517,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (160,'Star Trek: Generations','1994-11-18',87,1,241,2,6,118,2,38000000,120000000,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (161,'Never Say ever Again','1983-12-15',88,1,241,6,6,134,NULL,36000000,160000000,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (162,'Star Trek: The Motion Picture','1979-12-20',89,1,241,2,6,132,1,35000000,139000000,3,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (164,'Lethal Weapon 3','1992-08-14',30,1,241,6,6,118,NULL,35000000,319700000,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (165,'Star Wars: Episode IV - Return of the Jedi','1983-05-25',90,1,241,13,6,134,NULL,32500000,572700000,4,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (166,'A History of Violence','2005-09-30',91,1,241,14,6,96,NULL,32000000,59993782,2,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (167,'Moonraker','1979-06-29',92,1,240,22,6,126,NULL,31000000,210300000,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (169,'The Assassination of Jesse James by the Coward Robert Ford','2007-11-30',93,1,241,6,6,160,NULL,30000000,11128555,2,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (170,'Million Dollar Baby','2005-01-14',10,1,241,6,6,132,NULL,30000000,216763646,7,4);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (173,'Ghost Busters','1984-12-07',94,1,241,5,6,105,NULL,30000000,291632124,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (174,'Star Trek V: The Final Frontier','1989-10-20',95,1,241,2,6,107,NULL,30000000,70200000,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (175,'Indiana Jones and the Temple of Doom','1984-06-15',4,1,241,13,6,118,NULL,28000000,333080271,2,1);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (176,'Blade Runner','1982-09-09',51,1,241,6,6,117,NULL,28000000,33139618,2,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (180,'Star Trek VI: The Undiscovered Country','1992-02-14',96,1,241,2,6,113,2,27000000,96900000,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (181,'The Running Man','1988-10-21',97,1,241,24,6,101,NULL,27000000,38122000,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (182,'Open Range','2004-03-19',98,1,241,7,6,139,NULL,26000000,68293719,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (183,'Kindergarten Cop','1991-02-01',94,1,241,1,6,111,NULL,26000000,202000000,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (184,'O Brother Where Art Thou?','2000-09-15',5,1,241,7,6,107,NULL,26000000,74506619,2,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (185,'Goodfellas','1990-09-19',9,1,241,6,6,145,NULL,25000000,46743809,6,1);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (188,'Schindler''s List','1994-02-18',4,1,241,1,6,195,NULL,25000000,321200000,12,7);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (191,'Star Trek IV: The Voyage Home','1987-04-10',99,1,241,2,6,119,2,24000000,133000000,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (192,'King Kong','1976-12-17',100,1,241,2,6,134,NULL,23000000,80014445,2,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (193,'Star Wars: Episode V - The Empire Strikes Back','1980-05-21',88,1,241,13,6,124,NULL,23000000,534200000,3,1);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (194,'Gandhi','1982-12-08',101,1,240,26,6,188,NULL,22000000,52767889,11,8);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (195,'Equilibrium','2003-03-14',102,1,241,23,6,107,NULL,20000000,5345869,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (196,'From Dusk Till Dawn','1996-05-31',103,1,241,23,6,108,NULL,20000000,25728961,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (197,'Raiders of the Lost Ark','1981-07-30',4,1,241,13,6,115,NULL,20000000,386800358,8,4);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (199,'Back to the Future','1985-12-04',20,1,241,1,6,117,NULL,19000000,381109762,4,1);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (200,'Dances With Wolves','1991-02-08',98,1,241,27,6,180,NULL,19000000,424200000,12,7);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (201,'Star Trek III: The Search For Spock','1984-07-27',99,1,241,2,6,105,2,18000000,87000000,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (202,'Borat: Cultural Learnings of America for Make Benefit Glorious ation of Kazakhstan','2006-11-02',104,1,241,28,6,84,NULL,18000000,261509089,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (203,'Raging Bull','1981-04-10',9,1,241,22,6,129,NULL,18000000,23380203,8,2);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (204,'Aliens','1986-08-29',15,1,241,4,6,137,NULL,17000000,183316455,7,2);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (205,'Hero','2004-09-24',105,5,48,29,6,99,NULL,17000000,177352140,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (206,'Hot Fuzz','2007-02-14',106,1,240,30,6,121,NULL,16000000,79192988,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (208,'High Plains Drifter','1973-08-22',10,1,241,31,6,105,NULL,15700000,15700000,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (211,'Lethal Weapon','1987-08-28',30,1,241,6,6,110,NULL,15000000,120192350,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (212,'Lethal Weapon 2','1989-09-15',30,1,241,6,6,114,NULL,25000000,140292000,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (213,'Crouching Tiger Hidden Dragon','2001-01-05',8,5,48,5,6,120,NULL,15000000,213200000,10,4);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (214,'Brokeback Mountain','2006-01-13',8,1,241,2,6,134,NULL,13900000,180343761,8,3);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (215,'Hulk','2003-07-18',8,1,241,1,6,138,NULL,137000000,245160047,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (216,'Sense and Sensibility','1996-02-23',8,1,240,5,6,136,NULL,16500000,134993774,7,1);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (217,'Ride with the Devil','1999-11-05',8,1,241,1,6,138,NULL,35000000,630779,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (218,'Twins','1989-03-17',94,1,241,1,6,105,NULL,15000000,216600000,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (219,'28 Days Later...','2002-11-01',108,1,240,32,6,113,NULL,15000000,82719885,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (220,'The Beach','2000-02-11',108,1,240,4,6,119,NULL,50000000,39778599,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (221,'Trainspotting','1996-02-23',108,1,240,33,6,94,NULL,3100000,24000785,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (222,'The Spy Who Loved Me','1977-08-03',92,1,240,22,6,125,NULL,14000000,185400000,3,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (223,'Downfall','2005-04-01',109,4,257,34,6,156,NULL,13500000,93501940,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (224,'Letters from Iwo Jima','2007-02-23',10,6,241,8,6,141,NULL,13000000,68356082,4,1);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (225,'Star Trek II: The Wrath of Khan','1982-07-16',96,1,241,2,6,113,3,12000000,96800000,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (226,'House of Flying Daggers','2005-01-14',105,5,48,29,6,119,NULL,12000000,93041228,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (227,'Das Boot','1982-02-10',25,4,257,4,6,149,NULL,12000000,84970337,6,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (228,'Casino Royale','1967-04-28',110,1,240,5,6,131,NULL,12000000,41744718,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (229,'Star Wars: Episode IV - A ew Hope','1977-12-27',7,1,241,13,6,121,NULL,11000000,797900000,10,6);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (230,'E.T.: The Extra-Terrestrial','1982-12-09',4,1,241,1,6,115,NULL,10500000,792910554,9,4);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (231,'Amelie','2001-10-05',111,3,79,16,6,122,NULL,10350000,152637129,5,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (232,'You Only Live Twice','1967-06-13',92,1,241,22,6,117,NULL,9500000,111600000,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (233,'Thunderball','1965-12-29',112,1,240,22,6,130,NULL,9000000,141200000,1,1);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (234,'Alien','1979-09-06',51,1,241,4,6,117,NULL,9000000,203630630,2,1);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (236,'On Her Majesty''s Secret Service','1969-12-18',113,1,240,22,6,140,NULL,8000000,82000000,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (237,'Pulp Fiction','1994-10-21',79,1,241,16,6,154,NULL,8000000,212900000,7,1);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (238,'Rumble in the Bronx','1997-07-04',114,2,48,14,6,104,NULL,7500000,36238752,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (239,'Diamonds are Forever','1971-12-30',115,1,240,22,6,120,NULL,7200000,116000000,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (240,'Fargo','1996-05-31',5,1,241,4,6,98,NULL,7000000,51567751,7,2);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (241,'Live and Let Die','1973-07-06',115,1,240,22,6,121,NULL,7000000,161800000,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (242,'The Man with the Golden Gun','1974-12-20',115,1,240,22,6,125,NULL,7000000,97600000,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (243,'Good ight and Good Luck','2006-02-17',116,1,241,6,6,93,NULL,7000000,54601218,6,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (244,'Pale Rider','1985-06-28',10,1,241,31,6,116,NULL,6900000,41410568,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (245,'The Terminator','1985-01-11',15,1,241,11,6,108,NULL,6400000,78019031,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (246,'Around the World in 80 Days','1956-10-17',117,1,241,22,6,167,NULL,NULL,NULL,8,5);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (249,'The Usual Suspects','1995-08-25',14,1,241,11,6,106,NULL,6000000,23341568,2,2);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (250,'Memento','2000-10-20',27,1,241,5,6,113,NULL,5000000,39665950,2,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (251,'Shaun of the Dead','2004-04-09',106,1,240,33,6,99,NULL,5000000,30039392,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (252,'Four Weddings and a Funeral','1994-05-13',26,1,240,33,3,117,NULL,4500000,257700832,2,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (254,'Goldfinger','1965-01-09',115,1,241,22,6,110,NULL,3000000,124900000,1,1);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (256,'From Russia with Love','1964-05-27',112,1,240,22,6,110,NULL,2000000,78900000,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (257,'Reservoir Dogs','1993-01-15',79,1,241,16,6,99,NULL,1200000,2832029,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (258,'Dr. o','1963-05-08',112,1,240,22,6,110,NULL,1000000,59567035,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (260,'Seven Samurai','1956-11-19',122,6,37,38,6,190,NULL,500000,271736,2,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (261,'Super Size Me','2004-09-10',123,1,241,39,6,100,NULL,65000,29529368,1,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (262,'Kagemusha','1980-10-06',122,6,37,38,6,179,NULL,NULL,NULL,2,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (263,'Ran','1985-06-01',122,6,37,38,6,160,NULL,12000000,NULL,4,1);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (264,'Sunshine','2007-04-05',108,1,240,4,6,107,5,40000000,31959646,0,0);
-INSERT INTO film (filmID, filmName, filmReleaseDate, filmDirectorID, filmLanguageID, filmCountryID, filmStudioID, filmGenreID, filmRunTimeMinutes, filmCertificateID, filmBudgetDollars, filmBoxOfficeDollars, filmOscarNominations, filmOscarWins) VALUES (265,'Once Were Warriors','1995-04-14',29,1,167,40,6,99,6,1000000,NULL,0,0);
-
-
-CREATE TABLE castFilm(
-	castID serial,
-	castFilmID integer,
-	castActorID integer,
-	castCharacterName text NULL
-);
-
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (1, 33, 1, 'Ray Ferrier');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (2, 1, 2, 'Dr. Alan Grant');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (3, 1, 3, 'Dr. Ellie Sattler');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (4, 1, 4, 'Dr. Ian Malcolm');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (5, 1, 5, 'John Hammond');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (6, 1, 6, 'Ray Arnold');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (7, 2, 7, 'Peter Parker');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (8, 2, 8, 'Norman Osborn');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (9, 2, 9, 'Mary Jane Watson');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (10, 3, 10, 'Ann Darrow');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (11, 3, 11, 'Carl Denham');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (12, 3, 12, 'Jack Driscoll');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (13, 3, 13, 'Kong');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (14, 5, 14, 'Clark Kent');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (15, 5, 15, 'Lois Lane');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (16, 5, 16, 'Lex Luthor');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (17, 6, 17, 'Jack Dawson');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (18, 6, 18, 'Rose DeWitt Bukater');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (19, 6, 19, 'Caledon ''Cal'' Hockley');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (20, 6, 20, 'Brock Lovett');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (21, 7, 21, 'Evan Baxter');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (22, 7, 22, 'God');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (23, 8, 23, 'Mariner');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (24, 8, 24, 'Deacon');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (25, 8, 11, 'Pilot');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (26, 9, 25, 'Captain Rafe McCawley');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (27, 9, 26, 'Captain Danny Walker');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (28, 9, 27, 'Nurse Lt. Evelyn Johnson');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (29, 9, 28, 'Petty Officer Doris Miller');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (30, 9, 29, 'President Franklin Delano Roosevelt');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (31, 9, 30, 'Lt. Col. James Doolittle');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (32, 9, 31, 'Sgt. Earl Sistern');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (33, 9, 32, 'Captain Thurman');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (34, 10, 33, 'Sam Witwicky');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (35, 10, 37, 'Mikaela Banes');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (36, 10, 29, 'Defense Secretary John Keller');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (37, 10, 34, 'Agent Simmons');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (38, 10, 35, 'Optimus Prime');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (39, 10, 36, 'Megatron');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (40, 11, 38, 'Harry Potter');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (41, 11, 39, 'Lord Voldemort');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (42, 11, 40, 'Alastor Mad-Eye Moody');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (43, 11, 41, 'Sirius Black');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (44, 11, 47, 'Hermione Granger');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (45, 11, 48, 'Ron Weasley');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (46, 11, 42, 'Albus Dumbledore');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (47, 11, 43, 'Severus Snape');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (48, 11, 44, 'Sybil Trelawney');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (49, 11, 45, 'Bellatrix Lestrange');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (50, 11, 46, 'Rubeus Hagrid');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (51, 12, 49, 'Wealthow');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (52, 12, 50, 'Hrothgar');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (53, 12, 51, 'Unferth');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (54, 12, 52, 'Beowulf');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (55, 12, 40, 'Wiglaf');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (56, 12, 53, 'Grendel''s Mother');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (57, 7, 54, 'Congressman Long');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (58, 13, 55, 'Barry B. Benson');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (59, 13, 56, 'Vanessa Bloome');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (60, 13, 57, 'Adam Flayman');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (61, 13, 54, 'Layton T. Montgomery');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (62, 13, 58, 'Mooseblood');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (63, 13, 59, 'Ray Liotta');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (64, 13, 60, 'Lou Lo Duca');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (78, 17, 73, 'Agamemnon');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (79, 17, 75, 'Achilles');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (80, 17, 40, 'Menelaus');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (81, 17, 76, 'Helen');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (82, 17, 77, 'Hector');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (83, 17, 63, 'Paris');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (84, 18, 38, 'Harry Potter');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (85, 18, 47, 'Hermione Granger');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (86, 18, 48, 'Ron Weasley');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (87, 18, 46, 'Rubeus Hagrid');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (88, 18, 42, 'Albus Dumbledore');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (89, 18, 43, 'Severus Snape');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (90, 18, 40, 'Professor Alastor Mad-Eye Moody');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (91, 18, 41, 'Sirius Black');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (92, 18, 39, 'Lord Voldemort');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (93, 19, 78, 'Bruce Wayne');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (94, 19, 79, 'Alfred');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (95, 19, 80, 'Henri Ducard');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (96, 19, 81, 'Rachel Dawes');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (97, 19, 41, 'Jim Gordon');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (98, 19, 82, 'Earle');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (99, 19, 83, 'Ra''s Al Ghul');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (100, 19, 22, 'Lucius Fox');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (101, 20, 61, 'Willy Wonka');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (102, 20, 45, 'Mrs. Bucket');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (103, 20, 84, 'Mr. Salt');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (104, 20, 85, 'Dr. Wonka');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (111, 22, 86, 'James Bond');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (112, 22, 89, 'M');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (113, 22, 90, 'R');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (114, 22, 87, 'Jinx');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (115, 22, 88, 'Miranda Frost');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (116, 22, 91, 'Damian Falco');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (117, 22, 92, 'Miss Moneypenny');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (118, 23, 93, 'Martin Riggs');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (119, 23, 94, 'Roger Murtaugh');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (120, 23, 95, 'Leo Getz');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (121, 23, 96, 'Lorna Cole');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (122, 23, 58, 'Detective Lee Butters');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (123, 23, 97, 'Wah Sing Ku');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (124, 24, 98, 'Harry S. Stamper');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (125, 24, 99, 'Dan Truman');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (126, 24, 25, 'A.J. Frost');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (127, 24, 100, 'Grace Stamper');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (128, 24, 101, 'Rockhound');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (129, 24, 102, 'Oscar Choi');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (130, 24, 103, 'Jayotis ''Bear'' Kurleenbear');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (131, 24, 104, 'Lev Andropov');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (135, 26, 7, 'Peter Parker');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (136, 26, 9, 'Mary Jane Watson');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (137, 27, 7, 'Peter Parker');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (138, 27, 9, 'Mary Jane Watson');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (139, 27, 8, 'Norman Osborn');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (161, 33, 119, 'Rachel Ferrier');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (162, 33, 120, 'Harlan Ogilvy');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (163, 34, 121, 'Jason Bourne');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (164, 34, 122, 'Nicky Parsons');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (165, 34, 123, 'Deputy Director oah Vosen');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (166, 34, 124, 'Simon Ross');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (167, 34, 125, 'Dr. Albert Hirsch');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (168, 35, 38, 'Harry Potter');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (169, 35, 47, 'Hermione Granger');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (170, 35, 48, 'Ron Weasley');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (171, 35, 41, 'Sirius Black');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (172, 35, 43, 'Professor Severus Snape');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (173, 35, 46, 'Rubeus Hagrid');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (174, 35, 44, 'Professor Sybil Trelawney');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (175, 36, 126, 'Persephone');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (176, 36, 127, 'Morpheus');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (177, 36, 128, 'Trinity');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (178, 36, 129, 'Neo');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (179, 36, 36, 'Agent Smith');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (180, 37, 130, 'Dr. Robert Langdon');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (181, 37, 131, 'Agent Sophie eveu');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (182, 37, 132, 'Sir Leigh Teabing');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (183, 37, 133, 'Captain Bezu Fache');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (184, 37, 118, 'Silas');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (185, 37, 134, 'Andre Vernet');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (186, 38, 135, 'Professor Albus Dumbledore');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (187, 38, 46, 'Rubeus Hagrid');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (188, 38, 38, 'Harry Potter');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (189, 38, 136, 'Mr. Ollivander');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (190, 38, 48, 'Ron Weasley');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (191, 38, 47, 'Hermione Granger');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (192, 38, 90, 'Nearly Headless ick');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (193, 38, 43, 'Professor Severus Snape');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (194, 39, 137, 'Jack Hall');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (195, 39, 138, 'Sam Hall');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (196, 39, 70, 'Terry Rapson');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (202, 41, 1, 'Nathan Algren');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (203, 41, 83, 'Katsumoto');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (204, 264, 140, 'Kaneda');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (205, 264, 141, 'Capa');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (206, 264, 142, 'Corazon');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (207, 19, 141, 'Dr. Jonathan Crane');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (208, 41, 140, 'Ujio');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (209, 41, 139, 'Zebulon Gant');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (210, 42, 143, 'Captain Billy Tyne');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (211, 42, 144, 'Bobby Shatford');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (212, 42, 145, 'Dale ''Murph'' Murphy');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (213, 42, 146, 'Linda Greenlaw');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (214, 42, 147, 'Bob Brown');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (215, 43, 1, 'Ethan Hunt');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (216, 43, 148, 'Owen Davian');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (217, 43, 108, 'Luther');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (218, 43, 149, 'Julia');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (219, 43, 150, 'Benji');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (220, 43, 127, 'Theodore Brassel');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (221, 44, 1, 'Ethan Hunt');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (222, 44, 108, 'Luther Stickell');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (223, 44, 40, 'John C. McCloy');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (224, 45, 151, 'Christian Slater');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (225, 45, 104, 'Gunnery Sergeant Hjelmstad');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (226, 45, 152, 'Sgt. Pete ''Ox'' Anderson');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (227, 46, 153, 'Obi-Wan Kenobi');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (228, 46, 154, 'Senator Padme Amidala');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (229, 46, 155, 'Anakin Skywalker');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (230, 46, 85, 'Count Dooku');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (231, 46, 6, 'Mace Windu');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (232, 46, 156, 'Yoda');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (233, 46, 157, 'Chancellor Palpatine');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (234, 46, 158, 'Jango Fett');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (235, 265, 158, 'Jake Heke');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (236, 265, 159, 'Beth Heke');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (237, 47, 54, 'James P. "Sulley" Sullivan');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (238, 47, 160, 'Mike Wazowski');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (239, 47, 101, 'Randall Boggs');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (240, 47, 161, 'Henry J. Waternoose');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (241, 47, 156, 'Fungus');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (242, 48, 80, 'Qui-Gon Jinn');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (243, 48, 153, 'Obi-Wan Kenobi');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (244, 48, 154, 'Queen Padme Amidala');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (245, 48, 156, 'Yoda');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (246, 48, 157, 'Senator Palpatine');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (247, 48, 162, 'Darth Maul');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (248, 48, 163, 'C-3PO');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (249, 48, 164, 'R2-D2');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (250, 48, 6, 'Mace Windu');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (251, 48, 64, 'Sabe');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (252, 49, 153, 'Obi-Wan Kenobi');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (253, 49, 154, 'Padme');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (254, 49, 155, 'Anakin Skywalker');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (255, 49, 157, 'Supreme Chancellor Palpatine');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (256, 49, 6, 'Mace Windu');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (257, 49, 156, 'Yoda');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (258, 49, 163, 'C-3PO');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (259, 49, 164, 'R2-D2');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (260, 49, 85, 'Count Dooku');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (261, 49, 158, 'Commander Cody');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (262, 49, 165, 'Chewbacca');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (263, 49, 159, 'Nee Alavar');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (264, 50, 126, 'Persephone');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (265, 50, 127, 'Morpheus');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (266, 50, 128, 'Trinity');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (267, 50, 129, 'Neo');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (268, 50, 36, 'Agent Smith');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (269, 51, 86, 'James Bond');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (270, 51, 66, 'Elliot Carver');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (271, 51, 142, 'Wai Lin');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (272, 51, 166, 'Jack Wade');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (273, 51, 89, 'M');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (274, 51, 116, 'Q');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (275, 51, 92, 'Miss Moneypenny');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (276, 52, 143, 'Danny Ocean');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (277, 52, 75, 'Rusty Ryan');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (278, 52, 167, 'Reuben Tishkoff');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (279, 52, 121, 'Linus Caldwell');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (280, 52, 168, 'Terry Benedict');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (281, 52, 169, 'Tess Ocean');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (282, 52, 170, 'Basher Tarr');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (283, 53, 98, 'John McClane');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (284, 53, 171, 'Thomas Gabriel');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (285, 53, 175, 'Mai');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (286, 54, 172, 'Passepartout');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (287, 54, 173, 'Phileas Fogg');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (288, 54, 177, 'Lord Kelvin');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (289, 54, 174, 'Prince Hapi');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (290, 54, 175, 'Female Agent');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (291, 54, 176, 'Wong Fei Hung');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (292, 54, 102, 'Wilbur Wright');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (293, 54, 90, 'Grizzled Sergeant');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (294, 54, 178, 'Orville Wright');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (295, 55, 80, 'Godfrey de Ibelin');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (296, 55, 63, 'Balian de Ibelin');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (297, 55, 40, 'Reynald');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (298, 55, 179, 'Tiberias');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (299, 55, 180, 'King Baldwin');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (300, 56, 75, 'John Smith');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (301, 56, 53, 'Jane Smith');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (302, 56, 181, 'Eddie');
-INSERT INTO castFilm (castID, castFilmID, castActorID, castCharacterName) VALUES (303, 56, 149, 'Gwen');
-
-
-CREATE TABLE userDB(
-	userID serial,
-	userName text NULL,
-	userPassword text NULL
-);
-
-
-INSERT INTO userDB (userName, userPassword) VALUES ('adimn', 'admin');
-INSERT INTO userDB (userName, userPassword) VALUES ('test', 'test');
