@@ -72,7 +72,7 @@ $ pip install -r requirements.txt
 To stop virtual environmental running issue below command in terminal. 
 
 ```
-$ pip deactivate
+$ deactivate
 ```
 
 ### Set up PostgreSQL database
@@ -91,7 +91,7 @@ postgres=# CREATE DATABASE project;
 
 Then, create user and select the password:
 
-```SQL
+```
 postgres=# CREATE USER user WITH PASSWORD 'password';
 ```
 
@@ -148,13 +148,13 @@ sql = {
 From current working directory start the web app using the command in terminal **osx/linux** 
 
 ```
-export FLASK_APP=app.py
+export FLASK_APP=actorServer.py
 ```
 
 or command line in **windows**
 
 ```
-set FLASK_APP=app.py
+set FLASK_APP=actorServer.py
 ```
 
 To run the server
@@ -166,3 +166,17 @@ python -m flask run
 Localhost server can be accessed at [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
 
 To stop server running press `ctrl` + `c` in terminal.  
+
+or alternatively access the web application hosted on GCP at http://34.121.174.63/
+
+#### References 
+
+[1] Python (https://www.python.org/downloads/) 
+
+[2] Git. (https://git-scm.com/)
+
+[3] Flask (https://flask.palletsprojects.com/en/2.0.x/)
+
+[3] PostgreSQL (https://www.postgresql.org/)
+
+[4] GMIT. Quality assurance framework. (https://www.gmit.ie/general/quality-assurance-framework)
