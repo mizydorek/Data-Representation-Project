@@ -36,7 +36,7 @@ The following software is required to run the notebook:
 
 The following command will install the packages according to the configuration file
 
-### Instructions for downloading repository
+### Download the repository
 
 At github repository [Data Representation](https://github.com/mizydorek/Data-Representation-Project) click on the green `Code` button to copy the link. Open command line(windows) or terminal(osx/linux), navigate to the selected directory and enter the command `git clone` followed copied the URL. Alternatively copy the whole command below:
 
@@ -46,3 +46,53 @@ git clone https://github.com/mizydorek/Data-Representation-Project.git
 
 The whole repository will be cloned down onto current working directory.
 
+### Set up the Virtual Environment
+
+While you are still in current working directory you can create virtual environment by issuing the command below:
+
+```
+$ python3 -m venv my_env
+```
+*where you can specify the name of the virtual environment by replacing my_env*
+
+Once created, it can now be activated with the following command:
+
+```
+$ source path_to_virtual_environment_directory/bin/activate
+```
+*replace the path to your virtual environment with path_to_virtual_environment_directory*
+
+
+The following command will install the packages according to the configuration file:
+
+```
+$ pip install -r requirements.txt
+```
+
+### Set up PostgreSQL database
+
+After the installation, log in to an an interactive Postgres session by using sudo and pass in the username with the -u option:
+
+```
+$ sudo -u postgres psql
+```
+
+and create database:
+
+```
+postgres=# CREATE DATABASE project;
+```
+
+Then, create user and select the password:
+
+```
+postgres=# CREATE USER user WITH PASSWORD 'password';
+```
+
+and give new user access to administrate the new database:
+
+
+```
+postgres=# GRANT ALL PRIVILEGES ON DATABASE project TO user;
+```
+*replace the database, username and password with your own*
