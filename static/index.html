@@ -120,32 +120,7 @@
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                          <div class="text-sm font-medium text-gray-900">
-                            Jane Cooper
-                          </div>
-                    </td>
-
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">
-                          Regional Paradigm Technician
-                        </div>
-                    </td>
-
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
-                      Admin
-                    </td>
-
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                      <button onclick="showUpdate(this)" class="text-indigo-600 hover:text-indigo-900">Edit</button>
-                    </td>
-
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Delete</a>
-                        <button onclick="doDelete(this)" class="text-indigo-600 hover:text-indigo-900">Delete</button>
-                      </td>
-
+                    
                   </tr>
       
                   <!-- More people... -->
@@ -170,7 +145,7 @@
         document.getElementById('display').style.display = "none"
         document.getElementById('createBtn').style.display = "block"
         document.getElementById('editBtn').style.display = "none"
-        // populateCountries()
+        populateCountries()
     }
 
     function showUpdate(e) {
@@ -369,23 +344,23 @@
         row.setAttribute('id', data.id)
         cell1 = row.insertCell(0);
         cell1.setAttribute('class', 'px-6 py-4 whitespace-nowrap')
-        cell1.innerHTML = '<div class="text-sm font-medium text-gray-900">' + data.actorname + '</div>'
+        cell1.innerHTML = '<div class="text-sm font-normal text-gray-900">' + data.actorname + '</div>'
         // cell1.innerHTML = '<div class="text-sm font-medium text-gray-900">' + data.actorname + '</div><div class="text-sm text-gray-400">tim.cooper@example.com</div>'
         cell2 = row.insertCell(1);
         cell2.setAttribute('class', 'px-6 py-4 whitespace-nowrap')
-        cell2.innerHTML = '<div class="text-sm font-medium text-gray-400">' + data.actordob + '</div>'
+        cell2.innerHTML = '<div class="text-sm font-normal text-gray-400">' + data.actordob + '</div>'
         cell3 = row.insertCell(2);
         cell3.setAttribute('class', 'px-6 py-4 whitespace-nowrap')
-        cell3.innerHTML = '<div class="text-sm font-medium text-gray-400">' + data.actorgender + '</div>'
+        cell3.innerHTML = '<div class="text-sm font-normal text-gray-400">' + data.actorgender + '</div>'
         cell4 = row.insertCell(3);
         cell4.setAttribute('class', 'px-6 py-4 whitespace-nowrap')
-        cell4.innerHTML = '<div class="text-sm font-medium text-gray-400">' + data.actorcountryid + '</div>'
+        cell4.innerHTML = '<div class="text-sm font-normal text-gray-400">' + data.actorcountryid + '</div>'
         cell5 = row.insertCell(4);
         cell5.setAttribute('class', 'px-6 py-4 whitespace-nowrap text-right text-sm font-medium')
-        cell5.innerHTML = '<button onclick="showUpdate(this)" class="text-indigo-600 hover:text-indigo-900">Edit</button>'
+        cell5.innerHTML = '<button onclick="showUpdate(this)" class="text-gray-500 hover:text-gray-900 hover:border-b-1 transition duration-300 ease-in-out">Update</button>'
         cell6 = row.insertCell(5);
         cell6.setAttribute('class', 'px-6 py-4 whitespace-nowrap text-right text-sm font-medium')
-        cell6.innerHTML = '<button onclick="doDelete(this)" class="text-indigo-600 hover:text-indigo-900">Delete</button>'
+        cell6.innerHTML = '<button onclick="doDelete(this)" class="text-gray-500 hover:text-gray-900 hover:border-b-1 transition duration-300 ease-in-out">Delete</button>'
 
     }
 
