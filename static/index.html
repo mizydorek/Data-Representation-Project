@@ -8,36 +8,17 @@
 </head>
 <body>
 
-    <div class="container bg-gray-100 mx-auto px-4">
-        <button id="showCreateButton" onclick="showCreate()" class="h-10 px-6 font-semibold rounded-md bg-black text-white" type="submit">
-            Buy now
-          </button>
-    </div>
-
     <div id="create-edit" class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12 hidden">
         <div class="relative py-3 sm:max-w-xl sm:mx-auto">
             <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
                 <div id="createUpdateForm" class="py-4 text-base leading-6 space-y-2 text-gray-700 sm:text-md sm:leading-7">
 
-                    <h1 class="text-xl font-medium text-gray-900 tracking-tight">Wind Turbine power production</h1>
-                    <p class="mt-1 italic text-md text-gray-400">Calculate wind turbine power output based on provided wind speed in range from 0 to 25 m/s using one of the four developed models. </p>
-            
-                    <p class="mt-1 italic text-md text-gray-400">Enter wind speed:</p>
-                    <div class="mt-1 flex rounded-md shadow-sm">  
-                        <input type="text" name="speed" id="speed" class="focus:ring-gray-500 focus:border-gray-500 flex-1 border block w-full py-2 px-3 rounded-none rounded-l-md sm:text-sm border-gray-300" placeholder="0 to 25 m/s">
-                        <span class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
-                            m/s
-                        </span>
-                    </div>
-
-                    <p class="mt-1 italic text-md text-gray-400">Choose the model:</p>
-                    <select id="model" name="model" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                        <option>Linear</option>
-                        <option>Polynomial</option>
-                        <option>Logistic</option>
-                        <option>KNearestNeighbor</option>
-                    </select>
-
+                    <h1 class="text-xl font-medium text-gray-900 tracking-tight">Data Representation module @ GMIT</h1>
+                    <p class="mt-1 italic text-md text-gray-400">
+                        Web application that performs the CRUD operations on the data using Flask web framework — that serves a RESTful API — MySQL/PostgreSQL 
+                        database and web front-end to display data and interact with the server using Javascript to consume a RESTful API.
+                    </p>
+        
                     <div class="mt-1 flex flex-col rounded-md shadow-sm">
                         <p class="mt-1 italic font-small text-gray-400">ID</p>
                         <input id="idInput" type="text" name="id" id="speed" class="focus:outline-none focus:border-gray-400 flex-1 border block w-full py-2 px-3 rounded-md sm:text-sm border-gray-300" placeholder="">
@@ -63,10 +44,10 @@
                         <input type="text" name="actorgender" id="speed" class="focus:outline-none focus:border-gray-400 flex-1 border block w-full py-2 px-3 rounded-md sm:text-sm border-gray-300" placeholder="">
                     </div>
 
-                    <div class="mt-1 flex flex-col rounded-md shadow-sm">
-                        <p class="mt-1 italic font-small text-gray-400">Country</p>
-                        <input type="text" name="actorcountryid" id="speed" class="focus:outline-none focus:border-gray-400 flex-1 border block w-full py-2 px-3 rounded-md sm:text-sm border-gray-300" placeholder="">
-                    </div>                     
+                    <p class="mt-1 italic text-md text-gray-400">Choose the country:</p>
+                    <select id="country" name="country" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        
+                    </select>                 
                     
                     <button id="createBtn" onclick="doCreate();" class="mt-1 block items-center justify-center w-full px-3 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-gray-400 hover:bg-gray-900 focus:outline-none focus:shadow-outline transition duration-300 ease-in-out">
                         Submit
@@ -79,6 +60,33 @@
             </div>
         </div>
     </div>
+
+
+
+    <div class="flex font-sans">
+        
+        <div class="flex-auto p-6">
+          <div class="flex flex-wrap mt-4 mb-6 pb-6 border-b border-gray-200">
+            <h1 class="flex-auto text-lg font-semibold text-gray-900">
+                Data Representation module @ GMIT
+            </h1>
+            <div class="w-full flex-none text-sm font-medium text-gray-500 mt-2 italic">
+                Actors
+            </div>
+          </div>
+          <div class="flex space-x-4 mb-6 text-sm font-medium">
+            <div class="flex-auto flex space-x-4">
+              <button id="showCreateButton" onclick="showCreate()" class="h-10 px-6 font-semibold rounded-md border border-gray-200 bg-white text-gray-900 hover:bg-gray-900 hover:text-white focus:outline-none focus:shadow-outline transition duration-300 ease-in-out" type="submit">
+                Create
+              </button>
+              <button id="showCreateButton" onclick="showSearch()" class="h-10 px-6 font-semibold rounded-md border border-gray-200 bg-white text-gray-900 hover:bg-gray-900 hover:text-white focus:outline-none focus:shadow-outline transition duration-300 ease-in-out" type="button">
+                Search
+              </button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
 
     
 
@@ -116,17 +124,11 @@
                           <div class="text-sm font-medium text-gray-900">
                             Jane Cooper
                           </div>
-                          <div class="text-sm text-gray-400">
-                            jane.cooper@example.com
-                          </div>
                     </td>
 
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="text-sm text-gray-900">
                           Regional Paradigm Technician
-                        </div>
-                        <div class="text-sm text-gray-400">
-                            Optimization
                         </div>
                     </td>
 
@@ -156,9 +158,10 @@
 
 
 <script
-    src="https://code.jquery.com/jquery-3.5.1.min.js"
-    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-    crossorigin="anonymous">
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous">
+</script>
 </script>
 <script>
     
@@ -167,6 +170,7 @@
         document.getElementById('display').style.display = "none"
         document.getElementById('createBtn').style.display = "block"
         document.getElementById('editBtn').style.display = "none"
+        // populateCountries()
     }
 
     function showUpdate(e) {
@@ -317,7 +321,8 @@
         actor.actorname = form.querySelector('input[name="actorname"]').value
         actor.actordob = form.querySelector('input[name="actordob"]').value
         actor.actorgender = form.querySelector('input[name="actorgender"]').value
-        actor.actorcountryid = form.querySelector('input[name="actorcountryid"]').value
+        // actor.actorcountryid = form.querySelector('input[name="actorcountryid"]').value
+        actor.actorcountryid = form.querySelector('#country option:checked').value
         console.log(JSON.stringify(actor))
         return actor
     }
@@ -343,8 +348,9 @@
             data:"",
             dataType:"JSON",
             method:"GET", 
+            cache: false,
             success:function(results){
-                // console.log(results)
+                console.log(results)
                 for (actor of results){
                     addDataToTable(actor)
                 } 
@@ -383,35 +389,32 @@
 
     }
 
+    function populateCountries(){
+    
+        $.ajax({
+            url:"http://127.0.0.1:5000/countries",
+            data:"",
+            dataType:"JSON",
+            method:"GET", 
+            success:function(results){
+                
+                for (country of results){
+                    var row="<option value="+country.id+">"+country.countryname+"</option>";
+                    
+                    $(row).appendTo('#country');
+
+                   
+                } 
+            },
+            error:function(xhr,status, msg){
+                console.log("error "+msg + "code is:"+status)
+            }
+        })
+
+    }
+
     populateData()
 
-
-    // function submit() {
-
-    //     var speed = document.getElementById('speed').value;
-    //     var model = document.getElementById('model').value;
-
-    //     var data = {
-    //         speed: speed,
-    //         model: model
-    //     };
-    //     // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-    //     fetch(`${window.origin}/api/model`, {
-    //         method: "POST",
-    //         credentials: "include",
-    //         body: JSON.stringify(data),
-    //         cache: "no-cache",
-    //         headers: new Headers({
-    //             "content-type": "application/json"
-    //         })
-    //     }).then(function (response){
-    //             response.json().then(function(data){
-    //                 $('.power').val(data);
-    //                 console.log(data)
-    //             })
-    //     });
-
-    // }
   
 </script>
 </body>
