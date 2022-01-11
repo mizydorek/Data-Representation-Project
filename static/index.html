@@ -6,7 +6,7 @@
     <title>Random App.</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
+<body onload="populateData()">
 
     <div id="create-edit" class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12 hidden">
         <div class="relative py-3 sm:max-w-xl sm:mx-auto">
@@ -19,7 +19,7 @@
                         database and web front-end to display data and interact with the server using Javascript to consume a RESTful API.
                     </p>
         
-                    <div class="mt-1 flex flex-col rounded-md shadow-sm">
+                    <div id='actorid' class="mt-1 flex flex-col rounded-md shadow-sm">
                         <p class="mt-1 italic font-small text-gray-400">ID</p>
                         <input id="idInput" type="text" name="id" id="speed" class="focus:outline-none focus:border-gray-400 flex-1 border block w-full py-2 px-3 rounded-md sm:text-sm border-gray-300" placeholder="">
                     </div>
@@ -29,20 +29,16 @@
                         <input type="text" name="actorname" id="speed" class="focus:outline-none focus:border-gray-400 flex-1 border block w-full py-2 px-3 rounded-md sm:text-sm border-gray-300" placeholder="">
                     </div>
 
-                    <!-- <div class="mt-1 flex flex-col rounded-md shadow-sm">
-                        <p class="mt-1 italic font-small text-gray-400">DOB</p>
-                        <input type="text" name="actordob" id="speed" class="focus:outline-none focus:border-gray-400 flex-1 border block w-full py-2 px-3 rounded-md sm:text-sm border-gray-300" placeholder="">
-                    </div> -->
-
                     <div class="mt-1 flex flex-col rounded-md shadow-sm">
                         <p class="mt-1 italic font-small text-gray-400">DOB</p>
                         <input type="date" name="actordob" id="speed" class="focus:outline-none focus:border-gray-400 flex-1 border block w-full py-2 px-3 rounded-md sm:text-sm border-gray-300" placeholder="">
                     </div>
 
-                    <div class="mt-1 flex flex-col rounded-md shadow-sm">
-                        <p class="mt-1 italic font-small text-gray-400">Gender</p>
-                        <input type="text" name="actorgender" id="speed" class="focus:outline-none focus:border-gray-400 flex-1 border block w-full py-2 px-3 rounded-md sm:text-sm border-gray-300" placeholder="">
-                    </div>
+                    <p class="mt-1 italic text-md text-gray-400">Choose the country:</p>
+                    <select id="actorgender" name="actorgender" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>   
 
                     <p class="mt-1 italic text-md text-gray-400">Choose the country:</p>
                     <select id="country" name="country" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -63,7 +59,7 @@
 
 
 
-    <div class="flex font-sans">
+    <div id="header" class="flex font-sans">
         
         <div class="flex-auto p-6">
           <div class="flex flex-wrap mt-4 mb-6 pb-6 border-b border-gray-200">
@@ -78,17 +74,15 @@
             <div class="flex-auto flex space-x-4">
               <button id="showCreateButton" onclick="showCreate()" class="h-10 px-6 font-semibold rounded-md border border-gray-200 bg-white text-gray-900 hover:bg-gray-900 hover:text-white focus:outline-none focus:shadow-outline transition duration-300 ease-in-out" type="submit">
                 Create
-              </button>
-              <button id="showCreateButton" onclick="showSearch()" class="h-10 px-6 font-semibold rounded-md border border-gray-200 bg-white text-gray-900 hover:bg-gray-900 hover:text-white focus:outline-none focus:shadow-outline transition duration-300 ease-in-out" type="button">
-                Search
+              </button>           
+              <button class="h-10 px-6 font-semibold rounded-md border border-gray-200 bg-white text-gray-900 hover:bg-gray-900 hover:text-white focus:outline-none focus:shadow-outline transition duration-300 ease-in-out" type="button">
+                <a href="search.html">Search</a>
               </button>
             </div>
           </div>
           
         </div>
       </div>
-
-    
 
 
     <div id="display" class="flex flex-col">
@@ -122,8 +116,7 @@
                   <tr>
                     
                   </tr>
-      
-                  <!-- More people... -->
+
                 </tbody>
               </table>
             </div>
@@ -140,52 +133,63 @@
 </script>
 <script>
     
+    // displays the create form
     function showCreate() {
         document.getElementById('create-edit').style.display = "block"
         document.getElementById('display').style.display = "none"
         document.getElementById('createBtn').style.display = "block"
         document.getElementById('editBtn').style.display = "none"
+        document.getElementById('actorid').style.display = "none"
+        document.getElementById('header').style.display = "none"
         populateCountries()
     }
 
+    // displays the update form
     function showUpdate(e) {
         var row = e.parentNode.parentNode;
-        // console.log(row)
-        actor = readBookFromRow(row)
-        populateForm(actor)
+        actor = readActorFromRow(row)
 
         document.getElementById('create-edit').style.display = "block"
         document.getElementById('display').style.display = "none"
         document.getElementById('createBtn').style.display = "none"
         document.getElementById('editBtn').style.display = "block"
+        document.getElementById('header').style.display = "none"
+
+        populateCountries()
+        getCountryId(actor)
     }
 
-    function readBookFromRow(row){
+    // reads information from row and assigns to actor object 
+    function readActorFromRow(row){
         actor = {}
         actor.id = row.getAttribute('id');
         actor.actorname = row.cells[0].firstChild.textContent
         actor.actordob = row.cells[1].firstChild.textContent
         actor.actorgender = row.cells[2].firstChild.textContent
         actor.actorcountryid = row.cells[3].firstChild.textContent
-        console.log(actor)
+        // console.log(actor)
 
         return actor
     }
 
+    // inserts all data associated with the actor to the form
     function populateForm(actor){
-        var form = document.getElementById('createUpdateForm')
 
+        // populateCountries()
+        console.log(actor)
+
+        var form = document.getElementById('createUpdateForm')
         form.querySelector('input[name="id"]').value = actor.id
         form.querySelector('input[name="id"]').disabled = true
         form.querySelector('input[name="actorname"]').value = actor.actorname
         form.querySelector('input[name="actordob"]').value = actor.actordob
-        form.querySelector('input[name="actorgender"]').value = actor.actorgender
-        form.querySelector('input[name="actorcountryid"]').value = actor.actorcountryid
 
-        // document.getElementById('idInput').value = id
-        // document.getElementById('idInput').disabled = true
+        document.getElementById('actorgender').value = actor.actorgender
+        document.getElementById('country').value = actor.actorcountryid
+
     }
 
+    // clears all the fields of the form
     function clearForm(actor){
         var form = document.getElementById('createUpdateForm')
 
@@ -193,14 +197,16 @@
         form.querySelector('input[name="id"]').disabled = true
         form.querySelector('input[name="actorname"]').value = ''
         form.querySelector('input[name="actordob"]').value = ''
-        form.querySelector('input[name="actorgender"]').value = ''
-        form.querySelector('input[name="actorcountryid"]').value = ''
+        // form.querySelector('input[name="actorgender"]').value = ''
+        // form.querySelector('#actorgender').value = ''
+        $('#country').empty()
     }
 
+    // adds the record to the table 
     function doCreate() {
  
         actor = getActorFromForm()
-        // console.log(actor)
+        
         $.ajax({
             url:"http://127.0.0.1:5000/actors",
             data:JSON.stringify(actor),
@@ -208,13 +214,11 @@
             method:"POST", 
             contentType: "application/json; charset=utf-8",
             success:function(results){
-                console.log(results)
+                
                 addDataToTable(actor)
                 showDisplay()
                 clearForm()
-                // for (movie of results){
-                //     displayMovie(movie)
-                // } 
+                
             },
             error:function(xhr,status, msg){
                 console.log("error "+msg + "code is:"+status)
@@ -222,16 +226,17 @@
         })
     }
 
+    // updates the record
     function doEdit(){
         actor = getActorFromForm()
-        console.log(actor)
         updateServer(actor)
-        updateTableRow(actor)
+        // updateTableRow(actor)
         showDisplay()
     }
 
+    // updates the record in db
     function updateServer(actor){
-        console.log(actor)
+        // console.log(actor)
         $.ajax({
             url:"http://127.0.0.1:5000/actors/"+actor.id,
             data:JSON.stringify(actor),
@@ -253,6 +258,7 @@
         })
     }
 
+    // updates the record in a table on the website
     function updateTableRow(actor){
         row = document.getElementById(actor.id)
         row.cells[0].firstChild.textContent = actor.actorname
@@ -262,6 +268,7 @@
         console.log(actor)
     }
 
+    // deletes the record from db
     function doDelete(e) {
         var table = document.getElementById('movieTable');
         var row = e.parentNode.parentNode;
@@ -284,48 +291,38 @@
         })
     }
 
+    // shows the main table
     function showDisplay() {
         document.getElementById('create-edit').style.display = "none"
+        document.getElementById('header').style.display = "block"
         document.getElementById('display').style.display = "block"
     }
 
+    // gets the actor details from form
     function getActorFromForm() {
         var form = document.getElementById('createUpdateForm')
         var actor = {}
         actor.id = form.querySelector('input[name="id"]').value
         actor.actorname = form.querySelector('input[name="actorname"]').value
         actor.actordob = form.querySelector('input[name="actordob"]').value
-        actor.actorgender = form.querySelector('input[name="actorgender"]').value
+        // actor.actorgender = form.querySelector('input[name="actorgender"]').value
+        actor.actorgender = $('#actorgender option:checked').text()
         // actor.actorcountryid = form.querySelector('input[name="actorcountryid"]').value
-        actor.actorcountryid = form.querySelector('#country option:checked').value
+        actor.actorcountryid = $('#country option:checked').text()
         console.log(JSON.stringify(actor))
         return actor
     }
 
+    // gets all records from the db and calls the function to add all the records to the table
     function populateData(){
-        //AJAX call to get movies
-        // $.ajax({
-        //     'url':'http://127.0.0.1:5000/movies',
-        //     'method':'GET',
-        //     'dataType':'JSON',
-        //     success:function(results){
-        //         console.log(results)
-        //         for (movie of results){
-        //             displayMovie(movie)
-        //         } 
-        //     },
-        //     error:function(xhr,status, msg){
-        //         console.log("error "+msg + "code is:"+status)
-        //     }
-        // })
+        
         $.ajax({
             url:"http://127.0.0.1:5000/actors",
             data:"",
             dataType:"JSON",
             method:"GET", 
-            cache: false,
             success:function(results){
-                console.log(results)
+
                 for (actor of results){
                     addDataToTable(actor)
                 } 
@@ -337,15 +334,15 @@
 
     }
 
+    // adds record to the table
     function addDataToTable(data){
-        // console.log(data)
+        
         table = document.getElementById('movieTable')
         row = table.insertRow()
         row.setAttribute('id', data.id)
         cell1 = row.insertCell(0);
         cell1.setAttribute('class', 'px-6 py-4 whitespace-nowrap')
         cell1.innerHTML = '<div class="text-sm font-normal text-gray-900">' + data.actorname + '</div>'
-        // cell1.innerHTML = '<div class="text-sm font-medium text-gray-900">' + data.actorname + '</div><div class="text-sm text-gray-400">tim.cooper@example.com</div>'
         cell2 = row.insertCell(1);
         cell2.setAttribute('class', 'px-6 py-4 whitespace-nowrap')
         cell2.innerHTML = '<div class="text-sm font-normal text-gray-400">' + data.actordob + '</div>'
@@ -364,6 +361,7 @@
 
     }
 
+    // gets country list from db and adds into the select field
     function populateCountries(){
     
         $.ajax({
@@ -375,10 +373,8 @@
                 
                 for (country of results){
                     var row="<option value="+country.id+">"+country.countryname+"</option>";
-                    
                     $(row).appendTo('#country');
 
-                   
                 } 
             },
             error:function(xhr,status, msg){
@@ -388,8 +384,28 @@
 
     }
 
-    populateData()
+    // gets country id from db
+    function getCountryId(actor){
+        
+        $.ajax({
+            url:"http://127.0.0.1:5000/countries/"+actor.actorcountryid,
+            data:"",
+            dataType:"JSON",
+            method:"GET", 
+            // async: false, 
+            success:function(results){
+                
+                actor['actorcountryid'] = results
+                // populateCountries()
+                populateForm(actor)
 
+            },
+            error:function(xhr,status, msg){
+                console.log("error "+msg + "code is:"+status)
+            }
+        })
+
+}
   
 </script>
 </body>

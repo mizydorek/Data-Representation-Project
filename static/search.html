@@ -8,52 +8,6 @@
 </head>
 <body>
 
-    <div id="create-edit" class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12 hidden">
-        <div class="relative py-3 sm:max-w-xl sm:mx-auto">
-            <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-                <div id="createUpdateForm" class="py-4 text-base leading-6 space-y-2 text-gray-700 sm:text-md sm:leading-7">
-
-                    <h1 class="text-xl font-medium text-gray-900 tracking-tight">Data Representation module @ GMIT</h1>
-                    <p class="mt-1 italic text-md text-gray-400">
-                        Web application that performs the CRUD operations on the data using Flask web framework — that serves a RESTful API — MySQL/PostgreSQL 
-                        database and web front-end to display data and interact with the server using Javascript to consume a RESTful API.
-                    </p>
-        
-                    <!-- <div class="mt-1 flex flex-col rounded-md shadow-sm">
-                        <p class="mt-1 italic font-small text-gray-400">ID</p>
-                        <input id="idInput" type="text" name="id" id="speed" class="focus:outline-none focus:border-gray-400 flex-1 border block w-full py-2 px-3 rounded-md sm:text-sm border-gray-300" placeholder="">
-                    </div> -->
-
-                    <div class="mt-1 flex flex-col rounded-md shadow-sm">
-                        <p class="mt-1 italic font-small text-gray-400">Name</p>
-                        <input type="text" name="actorname" id="speed" class="focus:outline-none focus:border-gray-400 flex-1 border block w-full py-2 px-3 rounded-md sm:text-sm border-gray-300" placeholder="">
-                    </div>
-
-                    <div class="mt-1 flex flex-col rounded-md shadow-sm">
-                        <p class="mt-1 italic font-small text-gray-400">DOB</p>
-                        <input type="date" name="actordob" id="speed" class="focus:outline-none focus:border-gray-400 flex-1 border block w-full py-2 px-3 rounded-md sm:text-sm border-gray-300" placeholder="">
-                    </div>
-
-                    <div class="mt-1 flex flex-col rounded-md shadow-sm">
-                        <p class="mt-1 italic font-small text-gray-400">Gender</p>
-                        <input type="text" name="actorgender" id="speed" class="focus:outline-none focus:border-gray-400 flex-1 border block w-full py-2 px-3 rounded-md sm:text-sm border-gray-300" placeholder="">
-                    </div>
-
-                    <p class="mt-1 italic text-md text-gray-400">Choose the country:</p>
-                    <select id="country" name="country" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                        
-                    </select>                 
-                    
-                    <button id="editBtn" onclick="doEdit();" class="mt-1 block items-center justify-center w-full px-3 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-gray-400 hover:bg-gray-900 focus:outline-none focus:shadow-outline transition duration-300 ease-in-out">
-                        Submit
-                    </button>                
-
-                </div>             
-            </div>
-        </div>
-    </div>
-
-
     <div class="flex font-sans">
         
         <div class="flex-auto p-6">
@@ -70,9 +24,6 @@
               <button class="h-10 px-6 font-semibold rounded-md border border-gray-200 bg-white text-gray-900 hover:bg-gray-900 hover:text-white focus:outline-none focus:shadow-outline transition duration-300 ease-in-out" type="submit">
                 <a href="index.html">Back</a>
               </button>
-              <!-- <button id="showCreateButton" onclick="showCreate()" class="h-10 px-6 font-semibold rounded-md border border-gray-200 bg-white text-gray-900 hover:bg-gray-900 hover:text-white focus:outline-none focus:shadow-outline transition duration-300 ease-in-out" type="submit">
-                Create
-              </button> -->
               <button id="showCreateButton" onclick="showSearch()" class="h-10 px-6 font-semibold rounded-md border border-gray-200 bg-white text-gray-900 hover:bg-gray-900 hover:text-white focus:outline-none focus:shadow-outline transition duration-300 ease-in-out" type="button">
                 Search
               </button>
@@ -134,36 +85,53 @@
     }
 
     function doSearch(searchField) {
-        // console.log(searchField)
-        $.ajax({
-            url:"http://127.0.0.1:5000/actors/"+searchField,
-            data:"",
-            method:"GET", 
-            dataType:"JSON",
-            // contentType: 'application/json',
-            success:function(results){
-                // console.log(results)
-                
-                for (actor of results){
-                    addDataToTable(actor)
-                } 
-                              
-            },
-            error:function(xhr,status, msg){
-                console.log("error "+msg + "code is:"+status)
-            }
-        })
+        
+        if (searchField == ''){
+
+            $.ajax({
+                url:"http://127.0.0.1:5000/actors",
+                data:"",
+                dataType:"JSON",
+                method:"GET", 
+                success:function(results){
+
+                    for (actor of results){
+                        addDataToTable(actor)
+                    } 
+                },
+                error:function(xhr,status, msg){
+                    console.log("error "+msg + "code is:"+status)
+                }
+            });
+
+        } else {
+            
+            $.ajax({
+                url:"http://127.0.0.1:5000/actors/"+searchField,
+                data:"",
+                method:"GET", 
+                dataType:"JSON",
+                // contentType: 'application/json',
+                success:function(results){
+                    for (actor of results){
+                        addDataToTable(actor)
+                    }               
+                },
+                error:function(xhr,status, msg){
+                    console.log("error "+msg + "code is:"+status)
+                }
+            });
+        }
     }
 
     function addDataToTable(data){
-        // console.log(data)
+    
         table = document.getElementById('tb')
         row = table.insertRow()
         row.setAttribute('id', data.id)
         cell1 = row.insertCell(0);
         cell1.setAttribute('class', 'px-6 py-4 whitespace-nowrap')
         cell1.innerHTML = '<div class="text-sm font-normal text-gray-900">' + data.actorname + '</div>'
-        // cell1.innerHTML = '<div class="text-sm font-medium text-gray-900">' + data.actorname + '</div><div class="text-sm text-gray-400">tim.cooper@example.com</div>'
         cell2 = row.insertCell(1);
         cell2.setAttribute('class', 'px-6 py-4 whitespace-nowrap')
         cell2.innerHTML = '<div class="text-sm font-normal text-gray-400">' + data.actordob + '</div>'
