@@ -1,4 +1,4 @@
-from movieDAO import movieDAO
+from actorDAO import actorDAO
 
 test = {
     'fname': 'Paul',
@@ -27,11 +27,10 @@ actorupdate = {
 
 new = {
     'actorname': 'Maciek',
-    'actordob': '1983-08-09',
+    'actordob': '1945-04-02',
     'actorgender': 'Male',
-    'actorcountryid': 241
+    'actorcountryid': 'Mexico'
 }
-
 
 
 # display all - test!!!
@@ -51,56 +50,42 @@ new = {
 # Actors db
 ################
 # display all
-# actors = movieDAO.getAll()
+# actors = actorDAO.getAll()
 # print(actors)
 
 ################
 # findActorByID
-# actor = movieDAO.findActorById(1)
+# actor = actorDAO.findActorById(1)
 # print(actor)
 
 ################
-# findCountry
-# countries = movieDAO.getCountries()
-# print(countries)
-# country = movieDAO.findCountryById(241)
-# print(country)
-# country = movieDAO.findCountryByName("Germany")
-# print(country)
+# find actor by text
+# actors = actorDAO.findActorByText('toma')
+# print(actors)
 
+################
+# findCountry
+# countries = actorDAO.getCountries()
+# print(countries)
+# country = actorDAO.findCountryById(241)
+# print(country)
+# country = actorDAO.findCountryByName("Germany")
+# print(country)
 
 ################
 # update actor
-actor = movieDAO.updateActor(actorupdate)
-print(actor)
+# actor = actorDAO.updateActor(actorupdate)
+# print(actor)
 
 
 ################
 # create actor
-# actor = movieDAO.createActor(new)
+# actor = actorDAO.createActor(new)
 # print(actor)
 
 
 
-
-# for test in tests:
-#     print(test)
-    
 # findCountry = countryDAO.findByID('Poland')
 # print(findCountry)
-
-
-# create - test!!!
-# test = {
-#     'fname': 'Paul',
-#     'lname': 'Neptune',
-#     'age': 31
-# }
-# result = movieDAO.createTest(test)
-
-# print(result)
-
-# result = movieDAO.columnsName('test')
-# print(result)
 
 

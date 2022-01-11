@@ -65,33 +65,40 @@ class actorDAO:
         return result
 
     def createActor(self, actor):
+
+        values = [actor[item] for item in actor]
+        country = values[-1]
+        countryid = self.findCountryByName(country)
+        values[-1] = countryid
+        print(values)
+
         cursor = self.getCursor()
         sql = 'INSERT INTO actor (actorName, actordob, actorgender, actorcountryid) VALUES (%s, %s, %s, %s)'
-        values = [actor[item] for item in actor ]
-        print(values)
+        # values = [actor[item] for item in actor ]
+        # print(values)
         cursor.execute(sql, values)
         self.db.commit()
         return 'Record has been added - {actor}'
 
-    def createTest(self, test):
-        cursor = self.getCursor()
-        sql = 'INSERT INTO test(fname, lname, age) VALUES (%s, %s, %s)'
-        values = [test[item] for item in test]
-        cursor.execute(sql, values)
-        # result = cursor.fetchone()
-        self.db.commit()
-        return 'Record has been added'
+    # def createTest(self, test):
+    #     cursor = self.getCursor()
+    #     sql = 'INSERT INTO test(fname, lname, age) VALUES (%s, %s, %s)'
+    #     values = [test[item] for item in test]
+    #     cursor.execute(sql, values)
+    #     # result = cursor.fetchone()
+    #     self.db.commit()
+    #     return 'Record has been added'
 
-    def findByNameTest(self, id):
-        cursor = self.getCursor()
-        sql="SELECT * FROM test WHERE id = %s"
-        values = [ id ]
-        cursor.execute(sql, values)
-        result = cursor.fetchone()
-        if (result == None):
-            return {}
-        columns = self.columnsName('test')
-        return {columns:result for columns,result in zip(columns,result)}
+    # def findByNameTest(self, id):
+    #     cursor = self.getCursor()
+    #     sql="SELECT * FROM test WHERE id = %s"
+    #     values = [ id ]
+    #     cursor.execute(sql, values)
+    #     result = cursor.fetchone()
+    #     if (result == None):
+    #         return {}
+    #     columns = self.columnsName('test')
+    #     return {columns:result for columns,result in zip(columns,result)}
 
     def findActorById(self, id):
         cursor = self.getCursor()
@@ -110,6 +117,25 @@ class actorDAO:
         columns = self.columnsName('actor')
         return {columns:result for columns,result in zip(columns,result)}
 
+    def findActorByText(self, text):
+        text = '%' + text + '%'
+        cursor = self.getCursor()
+        sql = '''
+                SELECT a.id, a.actorname, date(a.actordob)::text as actordob , a.actorgender, c.countryname as actorcountryname
+                FROM actor a
+                    LEFT JOIN country c 
+	                    ON a.actorcountryid = c.id
+                WHERE a.actorname ILIKE %s
+                ORDER BY a.id ASC
+                ;'''
+        values = [ text ]
+        cursor.execute(sql, values)
+        result = cursor.fetchall()
+        if (result == None):
+            return {}
+        columns = self.columnsName('actor')
+        return [{columns:item for columns,item in zip(columns,item)} for item in result]
+
     def getCountries(self):
         cursor = self.getCursor()
         sql="SELECT * FROM country"
@@ -122,7 +148,7 @@ class actorDAO:
 
     def findCountryById(self, id):
         cursor = self.getCursor()
-        sql="SELECT * FROM country WHERE countryid = %s"
+        sql="SELECT * FROM country WHERE id = %s"
         values = [ id ]
         cursor.execute(sql, values)
         result = cursor.fetchone()
@@ -141,17 +167,17 @@ class actorDAO:
             return {}
         # columns = self.columnsName('country')
         # return {columns:result for columns,result in zip(columns,result)}
-        return result[0]
+        return str(result[0])
 
-    def updateTest(self, test):
-        cursor = self.getCursor()
-        sql = 'UPDATE test SET fname = %s, lname = %s, age = %s WHERE id = %s'
-        values = [test[item] for item in test]
-        values = values[1:] + [values[0]]
-        print(values)
-        cursor.execute(sql, values)
-        self.db.commit()
-        return f'Record has been updated - {test}'
+    # def updateTest(self, test):
+    #     cursor = self.getCursor()
+    #     sql = 'UPDATE test SET fname = %s, lname = %s, age = %s WHERE id = %s'
+    #     values = [test[item] for item in test]
+    #     values = values[1:] + [values[0]]
+    #     print(values)
+    #     cursor.execute(sql, values)
+    #     self.db.commit()
+    #     return f'Record has been updated - {test}'
 
     def updateActor(self, actor):
 

@@ -1,6 +1,5 @@
 from flask import Flask, url_for, request, redirect, abort, jsonify, render_template
 from actorDAO import actorDAO
-from config import Config
 
 app = Flask(__name__, static_url_path='', static_folder='static')
 app.secret_key = 'Av&(b4&c>Re/PRg=Av&(b4&c>Re/PRg='
@@ -10,19 +9,34 @@ app.secret_key = 'Av&(b4&c>Re/PRg=Av&(b4&c>Re/PRg='
 def index():
     return 'hello'
 
+# # prevent cached responses
+# if app.config["DEBUG"]:
+#     @app.after_request
+#     def after_request(response):
+#         response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate, public, max-age=0"
+#         response.headers["Expires"] = 0
+#         response.headers["Pragma"] = "no-cache"
+#         return response
+
+
 # display all the books
 # curl http://127.0.0.1:5000/movies
 @app.route('/movies')
 def getAll():
     return jsonify(actorDAO.getAll())
 
-@app.route('/actors')
+@app.get('/actors')
 def getActors():
+    print('getActors')
     return jsonify(actorDAO.getAll())
 
 @app.route('/actors/<int:id>')
 def findActorById(id):
     return jsonify(actorDAO.findActorById(id))
+
+@app.route('/actors/<string:actorname>')
+def findActorByText(actorname):
+    return jsonify(actorDAO.findActorByText(actorname))
 
 @app.route('/countries')
 def getCountries():
@@ -32,6 +46,10 @@ def getCountries():
 def findCountryById(id):
     return jsonify(actorDAO.findCountryById(id))
 
+@app.route('/countries/<countryname>')
+def findCountryByName(countryname):
+    return jsonify(actorDAO.findCountryByName(countryname))
+
 # find book by ID
 # curl http://127.0.0.1:5000/movies/1
 @app.route('/movies/<int:id>')
@@ -40,6 +58,8 @@ def findById(id):
     # if (len(found) == 0):
     #     return jsonify({}), 204
     return jsonify(actorDAO.findByNameTest(id))
+
+
 
 # create a new record
 # curl -X POST -d "{\"actorname\":\"test\", \"actordob\":\"Someone\", \"actorgender\":\"Someone\", \"actorcountryid\": 241 }" -H Content-Type:application/json http://127.0.0.1:5000/actors
