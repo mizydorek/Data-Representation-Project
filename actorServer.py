@@ -1,4 +1,4 @@
-from flask import Flask, url_for, request, redirect, abort, jsonify, render_template
+from flask import Flask, url_for, request, redirect, abort, jsonify, render_template, redirect
 from actorDAO import actorDAO
 
 app = Flask(__name__, static_url_path='', static_folder='static')
@@ -7,59 +7,44 @@ app.secret_key = 'Av&(b4&c>Re/PRg=Av&(b4&c>Re/PRg='
 # curl http://127.0.0.1:5000/
 @app.route('/')
 def index():
-    return 'hello'
+    return redirect(url_for('static', filename='index.html'))
 
-# # prevent cached responses
-# if app.config["DEBUG"]:
-#     @app.after_request
-#     def after_request(response):
-#         response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate, public, max-age=0"
-#         response.headers["Expires"] = 0
-#         response.headers["Pragma"] = "no-cache"
-#         return response
-
-
-# display all the books
-# curl http://127.0.0.1:5000/movies
-@app.route('/movies')
-def getAll():
-    return jsonify(actorDAO.getAll())
-
+# display all the actors
+# curl http://127.0.0.1:5000/actors
 @app.get('/actors')
 def getActors():
     print('getActors')
     return jsonify(actorDAO.getAll())
 
+# find actor by id
+# curl http://127.0.0.1:5000/actors/1
 @app.route('/actors/<int:id>')
 def findActorById(id):
     return jsonify(actorDAO.findActorById(id))
 
+# find actor by name
+# curl http://127.0.0.1:5000/actors/tom
 @app.route('/actors/<string:actorname>')
 def findActorByText(actorname):
     return jsonify(actorDAO.findActorByText(actorname))
 
+# display all countries
+# curl http://127.0.0.1:5000/countries
 @app.route('/countries')
 def getCountries():
     return jsonify(actorDAO.getCountries())
 
+# find country by id
+# curl http://127.0.0.1:5000/countries/240
 @app.route('/countries/<int:id>')
 def findCountryById(id):
     return jsonify(actorDAO.findCountryById(id))
 
+# find country id by name 
+# curl http://127.0.0.1:5000/countries/Germany
 @app.route('/countries/<countryname>')
 def findCountryByName(countryname):
     return jsonify(actorDAO.findCountryByName(countryname))
-
-# find book by ID
-# curl http://127.0.0.1:5000/movies/1
-@app.route('/movies/<int:id>')
-def findById(id):
-    # found = list(filter (lambda t : t['id'] == id, books))
-    # if (len(found) == 0):
-    #     return jsonify({}), 204
-    return jsonify(actorDAO.findByNameTest(id))
-
-
 
 # create a new record
 # curl -X POST -d "{\"actorname\":\"test\", \"actordob\":\"Someone\", \"actorgender\":\"Someone\", \"actorcountryid\": 241 }" -H Content-Type:application/json http://127.0.0.1:5000/actors
@@ -78,7 +63,7 @@ def createActor():
     return jsonify(actorDAO.createActor(actor))
 
 # update the record
-# curl -X PUT -d "{\"fname\":\"test\", \"lname\":\"Someone\", \"age\":10}" -H Content-Type:application/json http://127.0.0.1:5000/movies/1
+# curl -X PUT -d "{\"fname\":\"test\", \"lname\":\"Someone\", \"age\":10}" -H Content-Type:application/json http://127.0.0.1:5000/actors/1
 @app.route('/actors/<int:id>', methods=['PUT'])
 def update(id):
 
