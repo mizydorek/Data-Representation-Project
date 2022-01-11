@@ -129,6 +129,7 @@ CREATE TABLE actor(
 	FOREIGN KEY(actorCountryID) REFERENCES country(id)
 );
 ```
+Insert all the necessary data into db that are in the `initdb.sql` file
 
 ### Run the web application
 
