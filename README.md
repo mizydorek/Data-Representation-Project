@@ -168,7 +168,7 @@ Localhost server can be accessed at [http://127.0.0.1:5000/](http://127.0.0.1:50
 
 To stop server running press `ctrl` + `c` in terminal.  
 
-or alternatively access the web application hosted on GCP at http://34.121.174.63/
+or alternatively access the web application hosted on GCP at http://104.197.47.155/
 
 #### References 
 
